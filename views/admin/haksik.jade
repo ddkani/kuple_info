@@ -18,7 +18,8 @@ block content
             .col-sm-9
                 div
                     button.btn.btn-primary.btn-save(ng-click='click.save()') 저장
-                    button.btn.btn-primary(ng-repeat='g in loopGwan',
+                    //button.btn.btn-danger.btn-delete(ng-click='click.delete()') 삭제
+                    button.btn.btn-primary.btn-gwan(ng-repeat='g in loopGwan',
                     ng-click='click.changeGwan(g[0])',
                     ng-class='{ "btn-selected" : select.gwan == g[0]}') {{ g[1] }}
 
@@ -38,7 +39,7 @@ block content
                 center
                     h4.meal {{ m[1] }}
 
-                button.btn.btn-info.pull-right(ng-if='!haksik[select.gwan][m[0]].length',
+                button.btn.btn-primary.pull-right(ng-if='!haksik[select.gwan][m[0]].length',
                 ng-click='obj.addCourse(m[0])') 코너 추가
 
                 // show corner (bf -> corners)
@@ -61,19 +62,11 @@ block content
                             type='text', placeholder='예)쌀밥, 파래자반볶음, 된장국, ...')
 
                     div.pull-right.table-option
-                        button.btn.btn-info.btn-delete-corner(ng-click='obj.addCourse(m[0])',
-                        ng-if='$last') 코너 추가
-                        button.btn.btn-danger.btn-delete-corner(ng-click='click.deleteCourse(m[0], $index)') 코너 삭제
+                        button.btn.btn-primary.btn-delete-corner(ng-click='obj.addCourse(m[0])',
+                        ng-if='$last') 추가
+                        button.btn.btn-primary.btn-delete-corner(ng-click='click.deleteCourse(m[0], $index)') 삭제
                     br
                     hr
-
-
-
-
-
-
-
-
 
 
         //- breakfirst launch dinner

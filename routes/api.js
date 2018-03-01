@@ -146,4 +146,23 @@ router.post('/save', function (req, res, next) {
 });
 
 
+// router.post('/delete', function (req, res, next) {
+//     let type = req.body.type;
+//     let date = req.body.date;
+//
+//     switch (type) {
+//         case 'haksik':
+//             HaksikModel.findOneAndRemove({date : date}, function (err) {
+//                 if (err) next(err);
+//                 else res.json({result : true});
+//             });
+//
+//             break;
+//
+//         default:
+//             res.send('')
+//     }
+// });
+
+
 module.exports = router;

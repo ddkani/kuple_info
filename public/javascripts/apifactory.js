@@ -40,6 +40,26 @@ return {
 
     },
 
+
+    deleteData : function (callback, type, date) {
+        $http({
+            method : 'POST',
+            url : '/api/delete',
+            data : {type: type, date: date}
+        }).then(
+            function (data)
+            {
+                var d = data.data;
+                callback(null, d);
+            },
+            function (err)
+            {
+                callback(err)
+            }
+        )
+
+    },
+
     doLogin : function (callback, form) {
         $http({
             method : 'POST',

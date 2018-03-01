@@ -76,6 +76,15 @@ angular.module('kuple_info')
             APIFactory.saveData(callback_saveData, getDate(), type, $scope.haksik)
         }
     };
+    $scope.click.delete = function () {
+        if (confirm("정말 삭제합니까?")) {
+            if ($scope.haksik._id === undefined) $scope.haksik.init();
+            else {
+                waitingDialog.show('Processing API...');
+                APIFactory.deleteData(callback_deleteData, type, getDate());
+            }
+        }
+    };
 
 
     // Gwan -> Meal -> Corner -> (name, dish, side)
@@ -136,6 +145,34 @@ angular.module('kuple_info')
         }
     }
 
+
+    function callback_deleteData(err, data) {
+        waitingDialog.hide();
+        if (err || !data) {
+            $.notify({
+                message: $scope.message.LOADFAILED
+            }, {
+                // settings
+                type: 'danger',
+                allow_dismiss: false,
+                delay: 2000,
+                // width: "50%"
+            });
+        }
+        else {
+            $.notify({
+                message: "삭제했습니다."
+            }, {
+                // settings
+                type: 'success',
+                allow_dismiss: false,
+                delay: 2000,
+                // width: "50%"
+            });
+            APIFactory.retriveData(callback_retriveData, getDate(), 'haksik')
+        }
+    }
+
     function getDate() {
         return datePicker.data("DateTimePicker").date()
     }
@@ -147,7 +184,7 @@ angular.module('kuple_info')
             format : 'YYYY. MM. DD',
             defaultDate: moment.now(),
             // useCurrent : false
-        }).on('dp.change', function (e) {r
+        }).on('dp.change', function (e) {
             // alert(e.date)
             console.log(e.date);
             waitingDialog.show("Processing API...");
