@@ -30,11 +30,11 @@ return {
             function (data)
             {
                 var d = data.data;
-                callback(d.result, d.data);
+                callback(null, d);
             },
             function (err)
             {
-                callback(false, err)
+                callback(err)
             }
         )
 
@@ -49,11 +49,11 @@ return {
             function (data)
             {
                 var d = data.data;
-                callback(d.result, d.data);
+                callback(null, d);
             },
             function (err)
             {
-                callback(false, err)
+                callback(err)
             }
         )
     }

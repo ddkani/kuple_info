@@ -87,10 +87,32 @@ router.post('/retrive', function (req, res, next) {
 
         default:
             res.send('')
-
     }
-
-
 });
+
+
+router.post('/save', function (req, res, next) {
+    let type = req.body.type;
+    let date = new Date(req.body.date);
+
+    date.setHours(0,0,0,0);
+
+    switch (type) {
+        case 'haksik':
+            const haksik = new HaksikModel(req.body.data);
+            haksik.date = date;
+            haksik.save();
+            res.json({result : true});
+            // HaksikModel.findOne({date: date}, function (err, haksik) {
+            //     if (err) { next(err); return }
+            //     res.send(haksik)
+            // });
+            break;
+
+        default:
+            res.send('')
+    }
+});
+
 
 module.exports = router;

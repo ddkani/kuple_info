@@ -6,26 +6,37 @@ block content
         hr
 
         // https://www.w3schools.com/bootstrap/bootstrap_forms.asp
-        .container
-            .form-group
-                #date-picker.input-group.date
-                    input.form-control(type='text')
-                    span.input-group-addon
-                        span.glyphicon.glyphicon-calendar
 
-        hr
+        .rows
+            .col-sm-3
+                .form-group
+                    #date-picker.input-group.date
+                        input.form-control(type='text')
+                        span.input-group-addon
+                            span.glyphicon.glyphicon-calendar
 
-        div.table-command
-            div
-                button.btn.btn-primary(ng-repeat='g in loopGwan',
-                ng-click='click.changeGwan(g[0])') {{ g[1] }}
+            .col-sm-9
+                div
+                    button.btn.btn-primary.btn-save(ng-click='click.save()') 저장
+                    button.btn.btn-primary(ng-repeat='g in loopGwan',
+                    ng-click='click.changeGwan(g[0])',
+                    ng-class='{ "btn-selected" : select.gwan == g[0]}') {{ g[1] }}
+
+        div.clear
+
+        hr.hr
+
+        //div.table-select-gwan
+        //    div
+        //        button.btn.btn-primary(ng-repeat='g in loopGwan',
+        //        ng-click='click.changeGwan(g[0])') {{ g[1] }}
 
 
         .rows.table-gwan
             .col-sm-4.table-meal(ng-repeat='m in loopMeal')
                 // meal?
                 center
-                    h4 {{ m[1] }}
+                    h4.meal {{ m[1] }}
 
                 button.btn.btn-info.pull-right(ng-if='!haksik[select.gwan][m[0]].length',
                 ng-click='obj.addCourse(m[0])') 코너 추가

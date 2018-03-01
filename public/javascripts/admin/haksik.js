@@ -7,6 +7,7 @@ angular.module('kuple_info')
 .controller('adminHaksikController', function (APIFactory, $scope) {
 
     var datePicker = $('#date-picker');
+    var type = 'haksik';
 
     $scope.message = {
         CONFIRM_DELETE_CORNER : '해당 코너를 삭제 하시겠습니까?',
@@ -69,8 +70,11 @@ angular.module('kuple_info')
     $scope.click.addCourse = function (meal) {
         $scope.obj.addCourse(meal);
     };
-    $scope.click.saveCourse = function () {
-
+    $scope.click.save = function () {
+        if (confirm("이대로 저장할까요?")) {
+            waitingDialog.show("Processing API...");
+            APIFactory.saveData(callback_saveData, getDate(), type, $scope.haksik)
+        }
     };
 
 
@@ -92,6 +96,7 @@ angular.module('kuple_info')
             });
         }
         else {
+            $scope.haksik = angular.copy(data);
             $.notify({
                 message: "학식 정보를 불러왔습니다."
             }, {
@@ -106,8 +111,7 @@ angular.module('kuple_info')
 
     function callback_saveData(err, data) {
         waitingDialog.hide();
-        if (err) alert("error: " + err);
-        if (!data) {
+        if (err || !data) {
             $.notify({
                 message: $scope.message.LOADFAILED
             }, {
@@ -131,6 +135,10 @@ angular.module('kuple_info')
         }
     }
 
+    function getDate() {
+        return datePicker.data("DateTimePicker").date()
+    }
+
 
     function init() {
         // initialize datetimepicker
@@ -147,7 +155,8 @@ angular.module('kuple_info')
 
 
         $scope.select.gwan = 'truth';
-        $scope.obj.init()
+        APIFactory.retriveData(callback_retriveData, getDate(), 'haksik')
+        // $scope.obj.init()
     }
     init();
 
