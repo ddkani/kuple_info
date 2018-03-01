@@ -47,17 +47,17 @@ block content
                         //label.col-2.col-form-label(for='example-text-input') 코너 이름
                         label.col-form-label(for='text-input-name') 코너이름
                         .col-10
-                            input#text-input-name.form-control(ng-value='c.name'
+                            input#text-input-name.form-control(ng-model='c.name'
                             type='text', placeholder='예)한식메뉴')
 
                         label.col-form-label(for='text-input-name') 주식메뉴
                         .col-10
-                            input#text-input-dish.form-control(ng-value='c.dish'
+                            input#text-input-dish.form-control(ng-model='c.dish'
                             type='text', placeholder='예)우삼겹된장찌개')
 
                         label.col-form-label(for='text-input-side') 부메뉴(반찬)
                         .col-10
-                            input#text-input-side.form-control(ng-value='c.side'
+                            input#text-input-side.form-control(ng-model='c.side'
                             type='text', placeholder='예)쌀밥, 파래자반볶음, 된장국, ...')
 
                     div.pull-right.table-option

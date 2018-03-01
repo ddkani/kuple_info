@@ -99,10 +99,41 @@ router.post('/save', function (req, res, next) {
 
     switch (type) {
         case 'haksik':
-            const haksik = new HaksikModel(req.body.data);
+            const haksik = req.body.data;
             haksik.date = date;
-            haksik.save();
-            res.json({result : true});
+
+            if (haksik.hasOwnProperty('_id')) {
+                HaksikModel.findByIdAndUpdate(haksik._id, haksik, function (err, doc) {
+                    if (err) next(err);
+                    else if (!doc) res.json({result : false});
+                    else res.json({result : true});
+                })
+            }
+            else {
+                const _haksik = new HaksikModel(haksik);
+                _haksik.save(function (err) {
+                    if (err) next(err);
+                    else res.json({result : true});
+                });
+            }
+
+            // HaksikModel.findById(haksik, function (err, doc) {
+            //    if (err) res.json({result : false});
+            //    else if (!doc) { // not created
+            //         const _haksik = new HaksikModel(haksik);
+            //         _haksik.save(function (err) {
+            //             if (err) next(err);
+            //             else res.json({result : true});
+            //         });
+            //    }
+            //    else { // update it!
+            //        HaksikModel.findByIdAndUpdate(haksik._id, haksik, function (err, doc) {
+            //            if (err) next(err);
+            //            else res.json({result : true});
+            //        });
+            //    }
+            // });
+            // res.json({result : true});
             // HaksikModel.findOne({date: date}, function (err, haksik) {
             //     if (err) { next(err); return }
             //     res.send(haksik)

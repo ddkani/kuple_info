@@ -85,6 +85,7 @@ angular.module('kuple_info')
         waitingDialog.hide();        
         if (err) alert("error: " + err);
         if (!data) {
+            $scope.obj.init();
             $.notify({
                 message: "저장한 학식 정보가 없으므로 새로 만듭니다."
             }, {
@@ -146,7 +147,7 @@ angular.module('kuple_info')
             format : 'YYYY. MM. DD',
             defaultDate: moment.now(),
             // useCurrent : false
-        }).on('dp.change', function (e) {
+        }).on('dp.change', function (e) {r
             // alert(e.date)
             console.log(e.date);
             waitingDialog.show("Processing API...");
