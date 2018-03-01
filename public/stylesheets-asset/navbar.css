@@ -11,12 +11,14 @@
   /*background-color: #bfbcbf;*/
   /*background-color: #f3f3f3;*/
   /*background-color: #ffffff;*/
-  background-color: #a50000;
+  background-color: #1d0000;
+  /*background-color: #a50000;*/
 }
 
 /* 브랜드 이름 글씨색 */
 .navbar-brand-span {
-  color: #a50000;
+  /*color: #a50000;*/
+  color: #1d0000;
   /*font-family: "Helvetica" !important;*/
   /*font-weight: 600;*/
 }
@@ -62,12 +64,14 @@
   /*box-shadow: inset 0 0 3px #a50000;*/
   /*box-shadow: 0 0 0 3px #a50000 inset;*/
   background-color: rgba(210, 0, 27, 0.21);
-  border-bottom: 3px solid #d2001b !important;
+  /*background-color: rgba(210, 0, 27, 0.21);*/
+  /*border-bottom: 3px solid #d2001b !important;*/
 }
 
 .navbar-active {
+  /*background-color: rgba(142, 0, 18, 0.21);*/
   background-color: rgba(142, 0, 18, 0.21);
-  border-bottom: 3px solid #a50000 !important;
+  /*border-bottom: 3px solid #a50000 !important;*/
 }
 
 

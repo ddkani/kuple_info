@@ -15,10 +15,11 @@ block content
 
         hr
 
-        //- 진리관 미래관 교수식당
-        button.btn.btn-primary(ng-click='click.changeGwan("truth")') 진리관
-        button.btn.btn-primary(ng-click='click.changeGwan("future")') 미래관
-        button.btn.btn-primary(ng-click='click.changeGwan("professor")') 교직원
+        div.table-command
+            div
+                button.btn.btn-primary(ng-repeat='g in loopGwan',
+                ng-click='click.changeGwan(g[0])') {{ g[1] }}
+
 
         .rows.table-gwan
             .col-sm-4.table-meal(ng-repeat='m in loopMeal')
@@ -26,7 +27,8 @@ block content
                 center
                     h4 {{ m[1] }}
 
-                button.btn.btn-info.pull-right(ng-click='', ng-if='!haksik[select.gwan][m[0]].length') 코너 추가
+                button.btn.btn-info.pull-right(ng-if='!haksik[select.gwan][m[0]].length',
+                ng-click='obj.addCourse(m[0])') 코너 추가
 
                 // show corner (bf -> corners)
                 div.table-corner(ng-repeat='c in haksik[select.gwan][m[0]] track by $index')
@@ -48,7 +50,7 @@ block content
                             type='text', placeholder='예)쌀밥, 파래자반볶음, 된장국, ...')
 
                     div.pull-right.table-option
-                        button.btn.btn-info.btn-delete-corner(ng-click='',
+                        button.btn.btn-info.btn-delete-corner(ng-click='obj.addCourse(m[0])',
                         ng-if='$last') 코너 추가
                         button.btn.btn-danger.btn-delete-corner(ng-click='click.deleteCourse(m[0], $index)') 코너 삭제
                     br

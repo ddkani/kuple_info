@@ -9,17 +9,20 @@ angular.module('kuple_info')
     var datePicker = $('#date-picker');
 
     $scope.message = {
-        'CONFIRM_DELETE_CORNER' : '해당 코너를 삭제 하시겠습니까?'
+        CONFIRM_DELETE_CORNER : '해당 코너를 삭제 하시겠습니까?',
+        LOADFAILED : '서버 연동 실패. 페이지를 새로고침 해주세요.',
+        LOADOK : '서버 연동 완료.'
     };
 
+    $scope.loopGwan = [['truth', '진리관'], ['future', '미래관'], ['professor', '교직원식당']];
     $scope.loopMeal = [['breakfirst', "아침"], ['launch', "점심"], ['dinner', "저녁"]];
 
-    var ObjMeal = {
+    $scope.ObjMeal = {
         breakfirst : [],
         launch : [],
         dinner : []
     };
-    var ObjCorner = {
+    $scope.ObjCorner = {
         name : '',
         dish : '',
         side : ''
@@ -27,31 +30,26 @@ angular.module('kuple_info')
 
     // haksik data
     $scope.haksik = {
-        truth : {
-            breakfirst : [{
-                name : '코너 이름',
-                dish : 'dish 이름',
-                side : 'side 이름'
-            }, {
-                name : '코너 이름',
-                dish : 'dish 이름',
-                side : 'side 이름'
-            },{
-                name : '코너 이름',
-                dish : 'dish 이름',
-                side : 'side 이름'
-            }],
-            launch : [{
 
-            }],
-            dinner : [{
-
-            }]
-        },
     };
 
     $scope.select = {
         gwan : ''
+    };
+
+
+    $scope.obj = {};
+    $scope.obj.init = function () {
+        const h = $scope.haksik;
+
+        for (var i in $scope.loopGwan) {
+            const p = $scope.loopGwan[i][0];
+            h[p] = angular.copy($scope.ObjMeal);
+        }
+    };
+    $scope.obj.addCourse = function (meal) {
+        const m = $scope.haksik[$scope.select.gwan][meal];
+        m.push(angular.copy($scope.ObjCorner))
     };
 
 
@@ -69,7 +67,10 @@ angular.module('kuple_info')
         }
     };
     $scope.click.addCourse = function (meal) {
-         
+        $scope.obj.addCourse(meal);
+    };
+    $scope.click.saveCourse = function () {
+
     };
 
 
@@ -77,17 +78,58 @@ angular.module('kuple_info')
 
 
     function callback_retriveData(err, data) {
-
+        waitingDialog.hide();        
         if (err) alert("error: " + err);
         if (!data) {
-            alert('데이터 없음')
+            $.notify({
+                message: "저장한 학식 정보가 없으므로 새로 만듭니다."
+            }, {
+                // settings
+                type: 'danger',
+                allow_dismiss: false,
+                delay: 2000,
+                // width: "50%"
+            });
         }
         else {
-            alert('데이터 있음');
-            console.log(data)
+            $.notify({
+                message: "학식 정보를 불러왔습니다."
+            }, {
+                // settings
+                type: 'success',
+                allow_dismiss: false,
+                delay: 2000,
+                // width: "50%"
+            });
         }
     }
 
+    function callback_saveData(err, data) {
+        waitingDialog.hide();
+        if (err) alert("error: " + err);
+        if (!data) {
+            $.notify({
+                message: $scope.message.LOADFAILED
+            }, {
+                // settings
+                type: 'danger',
+                allow_dismiss: false,
+                delay: 2000,
+                // width: "50%"
+            });
+        }
+        else {
+            $.notify({
+                message: $scope.message.LOADOK
+            }, {
+                // settings
+                type: 'success',
+                allow_dismiss: false,
+                delay: 2000,
+                // width: "50%"
+            });
+        }
+    }
 
 
     function init() {
@@ -99,10 +141,13 @@ angular.module('kuple_info')
         }).on('dp.change', function (e) {
             // alert(e.date)
             console.log(e.date);
+            waitingDialog.show("Processing API...");
             APIFactory.retriveData(callback_retriveData, e.date, 'haksik')
         });
 
+
         $scope.select.gwan = 'truth';
+        $scope.obj.init()
     }
     init();
 

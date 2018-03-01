@@ -51,7 +51,7 @@ app.use('/css-import', express.static(path.join(__dirname, 'public/stylesheets-a
 
 app.use('/asset', express.static(path.join(__dirname, 'bower_components')));
 app.use('/js', express.static(path.join(__dirname, 'public/javascripts')));
-app.use('/js-import', express.static(path.join(__dirname, 'public/javascripts-asset')));
+app.use('/js-asset', express.static(path.join(__dirname, 'public/javascripts-asset')));
 app.use('/img', express.static(path.join(__dirname, 'public/images')));
 app.use('/fonts', express.static(path.join(__dirname, 'public/fonts')));
 app.use('/misc', express.static(path.join(__dirname, 'public/misc')));
