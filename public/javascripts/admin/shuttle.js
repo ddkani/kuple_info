@@ -12,24 +12,46 @@ angular.module('kuple_info')
 
     $scope.opt = {}; // TODO -> migration to service or factory!
 
-    $scope.shuttle = {
+    $scope.ObjTable = {
+        departureTime : null,
+        arrivalTime : null
+    };
+    $scope.ObjList = {
+        jochiwon : [],
+        campus : []
+    };
+    $scope.ObjShuttle = {
+        weekday : [],
+        weekend : []
+    };
 
+    $scope.obj = {};
+    $scope.obj.init = function () {
+
+    };
+
+
+
+
+
+    $scope.shuttle = {
     };
 
     $scope.msg = {
 
     };
 
-    // 0 - 평일 / 1 - 주말
+    // weekday - 평일 / weekend - 주말
     $scope.sel = {
-        week : 0
+        week : 'weekday'
     };
 
+
     $scope.click = {};
+    $scope.changeSelection = function (sel) { $scope.sel = sel; };
     $scope.click.save = function () {
 
     };
-
     
     function init() {
         // initialize datetimepicker

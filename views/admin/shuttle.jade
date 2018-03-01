@@ -7,35 +7,39 @@ block content
         div.table-top
             h3 셔틀버스 관리
             a(href='http://sejong.korea.ac.kr/campuslife/facilities/shuttle_bus', target='_blank')
-                span.table-top &nbsp;(식단 링크 바로가기)
+                span.table-top &nbsp;(셔틀버스 링크 바로가기)
         //div.clear
         hr
 
         // https://www.w3schools.com/bootstrap/bootstrap_forms.asp
 
-        div
-            button.btn.btn-primary(ng-click='click.changeSelection("weekday")') 평일
-            button.btn.btn-primary(ng-click='click.changeSelection("weekend")') 주말
+        // ng-class='{ "btn-selected" : select.gwan == g[0]}') {{ g[1] }}
+
+        div.table-control
+            button.btn.btn-primary(ng-click='click.changeSelection("weekday")',
+            ng-class='{ "btn-selected" : select.sel == "weekday" } ') 평일
+            button.btn.btn-primary(ng-click='click.changeSelection("weekend")',
+            ng-class='{ "btn-selected" : select.sel == "weekend" } ') 주말
 
             button.btn.btn-primary(ng-click='click.save()') 저장
 
-
-        .rows
-            .col-sm-3
-                .form-group
-                    #date-picker.input-group.date
-                        input.form-control(type='text')
-                        span.input-group-addon
-                            span.glyphicon.glyphicon-calendar
-
-            .col-sm-9
-                div
-                    button.btn.btn-primary.btn-save(ng-click='click.save()') 저장
-                    //button.btn.btn-danger.btn-delete(ng-click='click.delete()') 삭제
-                    button.btn.btn-primary.btn-gwan(ng-repeat='g in loopGwan',
-                    ng-click='click.changeGwan(g[0])',
-                    ng-class='{ "btn-selected" : select.gwan == g[0]}') {{ g[1] }}
-
+        //
+        //.rows
+        //    .col-sm-3
+        //        .form-group
+        //            #date-picker.input-group.date
+        //                input.form-control(type='text')
+        //                span.input-group-addon
+        //                    span.glyphicon.glyphicon-calendar
+        //
+        //    .col-sm-9
+        //        div
+        //            button.btn.btn-primary.btn-save(ng-click='click.save()') 저장
+        //            //button.btn.btn-danger.btn-delete(ng-click='click.delete()') 삭제
+        //            button.btn.btn-primary.btn-gwan(ng-repeat='g in loopGwan',
+        //            ng-click='click.changeGwan(g[0])',
+        //            ng-class='{ "btn-selected" : select.gwan == g[0]}') {{ g[1] }}
+        //
 
         //button.btn.btn-primary.btn-save.pull-right.float-left(ng-click='click.goDorm()') 식단 바로가기
 
