@@ -1,0 +1,76 @@
+extends layout
+block content
+
+    .container-fluid#container(ng-controller='adminHaksikController')
+        h3 학식 정보 관리
+        hr
+
+        // https://www.w3schools.com/bootstrap/bootstrap_forms.asp
+        .container
+            .form-group
+                #date-picker.input-group.date
+                    input.form-control(type='text')
+                    span.input-group-addon
+                        span.glyphicon.glyphicon-calendar
+
+        hr
+
+        //- 진리관 미래관 교수식당
+        button.btn.btn-primary(ng-click='click.changeGwan("truth")') 진리관
+        button.btn.btn-primary(ng-click='click.changeGwan("future")') 미래관
+        button.btn.btn-primary(ng-click='click.changeGwan("professor")') 교직원
+
+        .rows.table-gwan
+            .col-sm-4.table-meal(ng-repeat='m in loopMeal')
+                // meal?
+                center
+                    h4 {{ m[1] }}
+
+                button.btn.btn-info.pull-right(ng-click='', ng-if='!haksik[select.gwan][m[0]].length') 코너 추가
+
+                // show corner (bf -> corners)
+                div.table-corner(ng-repeat='c in haksik[select.gwan][m[0]] track by $index')
+                    .form-group.row
+                        //label.col-2.col-form-label(for='example-text-input') 코너 이름
+                        label.col-form-label(for='text-input-name') 코너이름
+                        .col-10
+                            input#text-input-name.form-control(ng-value='c.name'
+                            type='text', placeholder='예)한식메뉴')
+
+                        label.col-form-label(for='text-input-name') 주식메뉴
+                        .col-10
+                            input#text-input-dish.form-control(ng-value='c.dish'
+                            type='text', placeholder='예)우삼겹된장찌개')
+
+                        label.col-form-label(for='text-input-side') 부메뉴(반찬)
+                        .col-10
+                            input#text-input-side.form-control(ng-value='c.side'
+                            type='text', placeholder='예)쌀밥, 파래자반볶음, 된장국, ...')
+
+                    div.pull-right.table-option
+                        button.btn.btn-info.btn-delete-corner(ng-click='',
+                        ng-if='$last') 코너 추가
+                        button.btn.btn-danger.btn-delete-corner(ng-click='click.deleteCourse(m[0], $index)') 코너 삭제
+                    br
+                    hr
+
+
+
+
+
+
+
+
+
+
+        //- breakfirst launch dinner
+        //div(ng-repeat='p in loopMeal')
+
+
+
+
+
+    script(src='/js/admin/haksik.js')
+    //script(src='/asset/jquery-datetime-picker-bygiro/dist/jquery.datetimepicker.ByGiro.js')
+    //link(rel='stylesheet', href='/asset/jquery-datetime-picker-bygiro/dist/jquery.datetimepicker.ByGiro.css')
+    link(rel='stylesheet', href='/css/admin_haksik.css')

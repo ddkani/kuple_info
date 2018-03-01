@@ -1,0 +1,31 @@
+doctype html
+html
+    head
+        title 쿠플존
+
+        //- 필수 리소스 파일 로드
+        meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+        link(rel='shortcut icon', href='/favicon.ico', type='image/x-icon')
+        link(rel='icon', href='/favicon.ico', type='image/x-icon')
+
+        link(rel='stylesheet', href='/asset/bootstrap/dist/css/bootstrap.min.css')
+
+        script(src='/asset/jquery/dist/jquery.js')
+        script(src='/asset/jquery-ui/ui/jquery-1-7.js')
+        script(src='/asset/bootstrap/dist/js/bootstrap.js')
+        script(src='/asset/moment/min/moment.min.js')
+        script(src='/asset/angular/angular.js')
+        script(src='/asset/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')
+
+        link(rel='stylesheet', href='/asset/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css')
+
+
+
+
+    body(ng-app='kuple_info')
+        include ../navbar
+
+        script(src='/js/init.js')
+
+        block content
+        script(src='/js/apifactory.js')
