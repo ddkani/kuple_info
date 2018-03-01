@@ -50,7 +50,7 @@
 
 /*강제로 bordrer-bottom 을 설정함으로써 hover 시 차이를 못느끼게 적용*/
 .navbar-inverse .navbar-nav>li {
-  border-bottom: 3px solid #f3f3f3;
+  /*border-bottom: 3px solid #f3f3f3;*/
   margin-top: 1px;
   padding-bottom: -4px;
   font-size: 14px;
@@ -97,4 +97,12 @@
   margin-top: 16px;
   margin-left: 10px;
   font-weight: 800;
+}
+
+
+.navbar-right li a {
+  color: #FFFFFF !important;
+  font-weight: 900;
+  margin-left: 5px;
+  border-bottom: 3px solid #f3f3f3;
 }

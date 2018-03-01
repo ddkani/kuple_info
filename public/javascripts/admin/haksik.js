@@ -8,6 +8,7 @@ angular.module('kuple_info')
 
     var datePicker = $('#date-picker');
     var type = 'haksik';
+    var DORMURL = 'http://dorm.ourhome.co.kr/reqKoSJ.aspx';
 
     $scope.message = {
         CONFIRM_DELETE_CORNER : '해당 코너를 삭제 하시겠습니까?',
@@ -15,7 +16,7 @@ angular.module('kuple_info')
         LOADOK : '서버 연동 완료.'
     };
 
-    $scope.loopGwan = [['truth', '진리관'], ['future', '미래관'], ['professor', '교직원식당']];
+    $scope.loopGwan = [['future', '미래관'], ['truth', '진리관'], ['professor', '교직원식당']];
     $scope.loopMeal = [['breakfirst', "아침"], ['launch', "점심"], ['dinner', "저녁"]];
 
     $scope.ObjMeal = {
@@ -84,6 +85,10 @@ angular.module('kuple_info')
                 APIFactory.deleteData(callback_deleteData, type, getDate());
             }
         }
+    };
+
+    $scope.click.goDorm = function () {
+        window.open(DORMURL);
     };
 
 
@@ -192,7 +197,7 @@ angular.module('kuple_info')
         });
 
 
-        $scope.select.gwan = 'truth';
+        $scope.select.gwan = 'future';
         APIFactory.retriveData(callback_retriveData, getDate(), 'haksik')
         // $scope.obj.init()
     }

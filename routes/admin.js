@@ -6,9 +6,7 @@ router.get('/', function(req, res, next) {
     res.render('admin/login')
 });
 
-
-router.get('/haksik', function (req, res, next) {
-   res.render('admin/haksik')
-});
+router.get('/haksik', function (req, res, next) { res.render('admin/haksik'); });
+router.get('/shuttle', function (req, res, next) { res.render('admin/shuttle'); });
 
 module.exports = router;

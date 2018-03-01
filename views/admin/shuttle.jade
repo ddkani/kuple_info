@@ -1,17 +1,24 @@
 extends layout
 block content
 
-    .container-fluid#container(ng-controller='adminHaksikController')
+    .container-fluid#container(ng-controller='adminShuttleController')
         //div
         //    div(style='float: left')
         div.table-top
-            h3 학식 관리
-            a(href='http://dorm.ourhome.co.kr/reqKoSJ.aspx', target='_blank')
+            h3 셔틀버스 관리
+            a(href='http://sejong.korea.ac.kr/campuslife/facilities/shuttle_bus', target='_blank')
                 span.table-top &nbsp;(식단 링크 바로가기)
         //div.clear
         hr
 
         // https://www.w3schools.com/bootstrap/bootstrap_forms.asp
+
+        div
+            button.btn.btn-primary(ng-click='click.changeSelection("weekday")') 평일
+            button.btn.btn-primary(ng-click='click.changeSelection("weekend")') 주말
+
+            button.btn.btn-primary(ng-click='click.save()') 저장
+
 
         .rows
             .col-sm-3
@@ -85,7 +92,7 @@ block content
 
 
 
-    script(src='/js/admin/haksik.js')
+    script(src='/js/admin/shuttle.js')
     //script(src='/asset/jquery-datetime-picker-bygiro/dist/jquery.datetimepicker.ByGiro.js')
     //link(rel='stylesheet', href='/asset/jquery-datetime-picker-bygiro/dist/jquery.datetimepicker.ByGiro.css')
-    link(rel='stylesheet', href='/css/admin_haksik.css')
+    link(rel='stylesheet', href='/css/admin_shuttle.css')
