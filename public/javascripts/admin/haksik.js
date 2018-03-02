@@ -174,7 +174,7 @@ angular.module('kuple_info')
                 delay: 2000,
                 // width: "50%"
             });
-            APIFactory.retriveData(callback_retriveData, getDate(), 'haksik')
+            APIFactory.retriveData(callback_retriveData, type, getDate())
         }
     }
 
@@ -193,12 +193,12 @@ angular.module('kuple_info')
             // alert(e.date)
             console.log(e.date);
             waitingDialog.show("Processing API...");
-            APIFactory.retriveData(callback_retriveData, e.date, 'haksik')
+            APIFactory.retriveData(callback_retriveData, type, e.date)
         });
 
 
         $scope.select.gwan = 'future';
-        APIFactory.retriveData(callback_retriveData, getDate(), 'haksik')
+        APIFactory.retriveData(callback_retriveData, type, getDate())
         // $scope.obj.init()
     }
     init();

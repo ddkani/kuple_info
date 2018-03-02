@@ -3,7 +3,7 @@ angular.module('kuple_info')
 .factory('APIFactory', function ($http){
 
 return {
-    retriveData : function (callback, date, type) {
+    retriveData : function (callback, type, date) {
         $http({
             method : 'POST',
             url : '/api/retrive',

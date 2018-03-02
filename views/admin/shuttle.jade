@@ -11,17 +11,20 @@ block content
         //div.clear
         hr
 
+        h3 준비중입니다.
+        br
+
         // https://www.w3schools.com/bootstrap/bootstrap_forms.asp
 
         // ng-class='{ "btn-selected" : select.gwan == g[0]}') {{ g[1] }}
 
-        div.table-control
-            button.btn.btn-primary(ng-click='click.changeSelection("weekday")',
-            ng-class='{ "btn-selected" : select.sel == "weekday" } ') 평일
-            button.btn.btn-primary(ng-click='click.changeSelection("weekend")',
-            ng-class='{ "btn-selected" : select.sel == "weekend" } ') 주말
-
-            button.btn.btn-primary(ng-click='click.save()') 저장
+        //div.table-control
+        //    button.btn.btn-primary(ng-click='click.changeSelection("weekday")',
+        //    ng-class='{ "btn-selected" : select.sel == "weekday" } ') 평일
+        //    button.btn.btn-primary(ng-click='click.changeSelection("weekend")',
+        //    ng-class='{ "btn-selected" : select.sel == "weekend" } ') 주말
+        //
+        //    button.btn.btn-primary(ng-click='click.save()') 저장
 
         //
         //.rows
@@ -42,10 +45,10 @@ block content
         //
 
         //button.btn.btn-primary.btn-save.pull-right.float-left(ng-click='click.goDorm()') 식단 바로가기
-
-        div.clear
-
-        hr.hr
+        //
+        //div.clear
+        //
+        //hr.hr
 
         //div.table-select-gwan
         //    div
@@ -53,39 +56,44 @@ block content
         //        ng-click='click.changeGwan(g[0])') {{ g[1] }}
 
 
-        .rows.table-gwan
-            .col-sm-4.table-meal(ng-repeat='m in loopMeal')
-                // meal?
-                center
-                    h4.meal {{ m[1] }}
+        //.rows-table-gwan
+        //    .col-sm-8.table-meal(ng-repeat='m in loopWeek')
 
-                button.btn.btn-primary.pull-right(ng-if='!haksik[select.gwan][m[0]].length',
-                ng-click='obj.addCourse(m[0])') 코너 추가
 
-                // show corner (bf -> corners)
-                div.table-corner(ng-repeat='c in haksik[select.gwan][m[0]] track by $index')
-                    .form-group.row
-                        //label.col-2.col-form-label(for='example-text-input') 코너 이름
-                        label.col-form-label(for='text-input-name') 코너이름
-                        .col-10
-                            input#text-input-name.form-control(ng-model='c.name'
-                            type='text', placeholder='예)한식메뉴')
 
-                        label.col-form-label(for='text-input-name') 주식메뉴
-                        .col-10
-                            input#text-input-dish.form-control(ng-model='c.dish'
-                            type='text', placeholder='예)우삼겹된장찌개')
-
-                        label.col-form-label(for='text-input-side') 부메뉴(반찬)
-                        .col-10
-                            input#text-input-side.form-control(ng-model='c.side'
-                            type='text', placeholder='예)쌀밥, 파래자반볶음, 된장국, ...')
-
-                    div.pull-right.table-option
-                        button.btn.btn-primary.btn-delete-corner(ng-click='obj.addCourse(m[0])',
-                        ng-if='$last') 추가
-                        button.btn.btn-primary.btn-delete-corner(ng-click='click.deleteCourse(m[0], $index)') 삭제
-                    br
+        //.rows.table-gwan
+        //    .col-sm-4.table-meal(ng-repeat='m in loopMeal')
+        //        // meal?
+        //        center
+        //            h4.meal {{ m[1] }}
+        //
+        //        button.btn.btn-primary.pull-right(ng-if='!haksik[select.gwan][m[0]].length',
+        //        ng-click='obj.addCourse(m[0])') 코너 추가
+        //
+        //        // show corner (bf -> corners)
+        //        div.table-corner(ng-repeat='c in haksik[select.gwan][m[0]] track by $index')
+        //            .form-group.row
+        //                //label.col-2.col-form-label(for='example-text-input') 코너 이름
+        //                label.col-form-label(for='text-input-name') 코너이름
+        //                .col-10
+        //                    input#text-input-name.form-control(ng-model='c.name'
+        //                    type='text', placeholder='예)한식메뉴')
+        //
+        //                label.col-form-label(for='text-input-name') 주식메뉴
+        //                .col-10
+        //                    input#text-input-dish.form-control(ng-model='c.dish'
+        //                    type='text', placeholder='예)우삼겹된장찌개')
+        //
+        //                label.col-form-label(for='text-input-side') 부메뉴(반찬)
+        //                .col-10
+        //                    input#text-input-side.form-control(ng-model='c.side'
+        //                    type='text', placeholder='예)쌀밥, 파래자반볶음, 된장국, ...')
+        //
+        //            div.pull-right.table-option
+        //                button.btn.btn-primary.btn-delete-corner(ng-click='obj.addCourse(m[0])',
+        //                ng-if='$last') 추가
+        //                button.btn.btn-primary.btn-delete-corner(ng-click='click.deleteCourse(m[0], $index)') 삭제
+        //            br
                     hr
 
 

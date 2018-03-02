@@ -1,0 +1,109 @@
+.navbar.navbar-inverse {
+    margin-bottom: 0 !important;
+}
+
+.container-fluid.tabview {
+    padding-left: 0;
+    padding-right: 0;
+    /*margin-top: 10px;*/
+    margin-bottom: 5px;
+    /*padding-top: 10px;*/
+    /*padding-bottom: 5px;*/
+    width: 100%;
+}
+
+/* background-color => applyed to magin@*/
+
+/* custom */
+ul.tabsize {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+
+}
+
+.tabsize a {
+    font-weight: 700;
+    font-size: 1.1em;
+    color: white;
+}
+
+.tabsize li {
+    background-color: #7a0600;
+    width: calc(33.3%);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #7a0600;
+}
+
+/* selected item theme! */
+.tabSelected {
+    background-color: #520400 !important;
+    border-bottom: 3px solid #ffe60f !important;
+}
+
+
+/* radio button form */
+.container.radio {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+label.radio-inline {
+    font-size: 17px !important;
+    /*font-weight: 700 !important;*/
+}
+
+
+.container.haksik-course-list {
+    /*border-color: black;*/
+    /*border: 1px solid black;*/
+    /*border-style: dotted;*/
+    /*border-top: 2px dotted black;*/
+    margin-bottom: 10px;
+}
+
+.haksik-course {
+    padding: 0 0 0 0;
+    margin-bottom: 50px;
+}
+
+.haksik-course .course {
+    font-weight: 700;
+    color: #cb7920;
+}
+
+.haksik-course .dish {
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.container-top {
+    border-bottom: 1px solid black;
+    /*display: inline-block;*/
+}
+
+.container-top h4 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: 900 !important;
+    font-size: 1.3em !important;
+}
+
+.container-top div {
+    display: inline-block;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.container-top div button {
+    padding: 5px 10px 5px 10px;
+    margin-right: 3px;
+    border-radius: 0;
+}
+
+.btnSelected {
+    background-color: #1a3f5e !important;
+}

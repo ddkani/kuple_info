@@ -10,7 +10,7 @@ angular.module('kuple_info')
     $scope.click.login = function () {
 
         function callbackLogin (err, result) {
-            if (!result || err) alert("로그인 실패");
+            if (!result.result || err) alert("로그인 실패");
             else location.href = '/admin/haksik'
         }
 

@@ -1,0 +1,61 @@
+// Color variables (appears count calculates by raw css)
+@color0: #7a0600; // Appears 2 times
+
+// Width variables (appears count calculates by raw css)
+@width0: calc(33.3%); // Appears 1 time
+@width1: 100%; // Appears 1 time
+
+
+.navbar.navbar-inverse {
+  margin-bottom: 0 !important;
+}
+.container-fluid.tabview {
+  margin-bottom: 5px;
+  padding-left: 0;
+  padding-right: 0;
+  width: @width1;
+}
+ul.tabsize {
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+}
+.tabsize {
+  a {
+    color: white;
+    font-size: 1.1em;
+    font-weight: 700;
+  }
+  li {
+    background-color: @color0;
+    border-bottom: 3px solid @color0;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    width: calc(33.3%);
+  }
+}
+.tabSelected {
+  background-color: #520400 !important;
+  border-bottom: 3px solid #ffe60f !important;
+}
+.container.radio {
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+label.radio-inline {
+  font-size: 17px !important;
+}
+.container.haksik-course-list {
+  border-top: 2px dotted black;
+  margin-bottom: 20px;
+}
+.haksik-course {
+  padding: 0 0 0 0;
+  .course {
+    color: #cb7920;
+    font-weight: 700;
+  }
+  .dish {
+    font-weight: 700;
+    text-decoration: underline;
+  }
+}

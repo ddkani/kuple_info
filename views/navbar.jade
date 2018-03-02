@@ -21,13 +21,14 @@ nav.navbar.navbar-inverse#application-navbar
 
 
         //#dnt-collapse.collapse.navbar-collapse
-        ul.nav.navbar-nav.navbar-right
+        if admin !== undefined
+            ul.nav.navbar-nav.navbar-right
 
-            li
-                a(href='/admin/haksik') 학식정보
+                li
+                    a(href='/admin/haksik') 학식정보
 
-            li
-                a(href='/admin/shuttle') 셔틀버스
+                li
+                    a(href='/admin/shuttle') 셔틀버스
 
-            li
-                a(href='/api/logout') 로그아웃
+                li
+                    a(href='/api/logout') 로그아웃

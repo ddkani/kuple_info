@@ -6,7 +6,14 @@ router.get('/', function(req, res, next) {
     res.render('admin/login')
 });
 
-router.get('/haksik', function (req, res, next) { res.render('admin/haksik'); });
-router.get('/shuttle', function (req, res, next) { res.render('admin/shuttle'); });
+router.get('/haksik', function (req, res, next) {
+    if (req.session.user === 'admin') res.render('admin/haksik', {admin: true});
+    else res.redirect('/admin')
+});
+
+router.get('/shuttle', function (req, res, next) {
+    if (req.session.user === 'admin') res.render('admin/shuttle', {admin: true});
+    else res.redirect('/admin')
+});
 
 module.exports = router;

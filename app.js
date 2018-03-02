@@ -39,7 +39,7 @@ app.use(session(
             // port: Number(process.env.redis_port),
             client: redisClient,
             prefix : "session:",
-            db : 0
+            db : 2
         }),
         saveUninitialized: false, // don't create session until something stored,
         resave: true // don't save session if unmodified

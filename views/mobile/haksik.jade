@@ -1,0 +1,56 @@
+extends layout
+
+block content
+
+    link(rel='stylesheet', href='/css-import/haksik.css')
+
+    div(ng-controller='mobileHaksikController')
+
+        .container-fluid.tabview
+            // need list-inline
+            ul.list-inline.tabsize
+                li(ng-class="{'tabSelected': select.tab == 'future'}", ng-click="click.tab('future')")
+                    center
+                        a 미래관
+                li(ng-class="{'tabSelected': select.tab == 'truth'}", ng-click="click.tab('truth')")
+                    center
+                        a 진리관
+                li(ng-class="{'tabSelected': select.tab == 'professor'}", ng-click="click.tab('professor')")
+                    center
+                        a 교직
+
+
+        .container-fluid
+            center
+                div.container-top
+                    h4 {{ date }}
+
+                    div
+                        button.btn.btn-primary(ng-class="{'btnSelected': select.meal == 'breakfirst'}",
+                        ng-click='click.meal("breakfirst")') 아침
+
+                        button.btn.btn-primary(ng-class="{'btnSelected': select.meal == 'launch'}",
+                        ng-click='click.meal("launch")') 점심
+
+                        button.btn.btn-primary(ng-class="{'btnSelected': select.meal == 'dinner'}",
+                        ng-click='click.meal("dinner")') 저녁
+
+
+
+
+            .container.haksik-course-list
+
+                div(ng-if='haksik[select.tab][select.meal].length === 0 || haksik === null')
+                    center
+                        br
+                        br
+                        h4 메뉴가 존재하지 않습니다.
+
+
+                .haksik-course(ng-repeat="data in haksik[select.tab][select.meal]")
+                    center
+                        h3.course {{ data.name }}
+                        h4.dish {{ data.dish }}
+                        h4 {{ data.side }}
+
+    script(src='/js/mobile/haksik.js')

@@ -1,0 +1,29 @@
+doctype html
+html
+    head
+        title= title == undefined ? '' : title
+
+        //- 필수 리소스 파일 로드
+        meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+        link(rel='shortcut icon', href='/favicon.ico', type='image/x-icon')
+        link(rel='icon', href='/favicon.ico', type='image/x-icon')
+
+        link(rel='stylesheet', href='/asset/bootstrap/dist/css/bootstrap.min.css')
+
+        script(src='/asset/jquery/dist/jquery.min.js')
+        script(src='/asset/angular/angular.min.js')
+        script(src='/asset/bootstrap/dist/js/bootstrap.min.js')
+
+        link(rel='stylesheet', href='/asset/font-awesome/css/font-awesome.min.css')
+        link(rel='stylesheet', href='/asset/bootstrap/dist/css/bootstrap.min.css')
+        script(src='/js-asset/waitingDialog.js')
+        //link(rel='stylesheet', href='/pub/imported-css/NotoSansKR-Hestia-remote.css')
+        //link(rel='stylesheet', href='/css/mobile.css')
+
+    body(ng-app='kuple_info')
+
+        include ../navbar
+
+        script(src='/js/init.js')
+        block content
+        script(src='/js/apifactory.js')
