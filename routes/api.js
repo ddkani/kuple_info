@@ -94,6 +94,9 @@ router.post('/retrive', function (req, res, next) {
             });
             break;
 
+        case 'shuttle':
+            break;
+
         default:
             res.send('')
     }

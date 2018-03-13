@@ -16,15 +16,17 @@ angular.module('kuple_info')
     $scope.callback = {};
 
     $scope.loopWeek = [['weekday', '평일'], ['weekend', '주말']];
-
+    $scope.loopDest = [['school', '학교'], ['jochiwon', '조치원역']];
 
     $scope.ObjTable = {
         departureTime : null,
         arrivalTime : null
     };
     $scope.ObjList = {
-        jochiwon : [],
-        campus : []
+        // array (school, jochiwon)
+
+        // jochiwon : [],
+        // campus : []
     };
     $scope.ObjShuttle = {
         weekday : [],
@@ -64,6 +66,9 @@ angular.module('kuple_info')
     $scope.click.save = function () {
 
     };
+    $scope.click.delete = function (index) {
+
+    };
 
 
     $scope.callback.retriveData = function (err, data) {
@@ -93,7 +98,7 @@ angular.module('kuple_info')
 
     function init() {
 
-        APIFactory.retriveData($scope.callback.retriveData, type, )
+        APIFactory.retriveData($scope.callback.retriveData, type, null)
         // TODO
         /*
         1. retrive current stored information from server

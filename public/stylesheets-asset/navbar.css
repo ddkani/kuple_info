@@ -4,6 +4,7 @@
   border-top: 1px solid gray;
   border-bottom: 1px solid gray;
   min-height: 63px !important;
+  border-radius: 0 !important;
 }
 
 /* navbar 백드라운드 색 */

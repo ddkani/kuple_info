@@ -11,20 +11,35 @@ block content
         //div.clear
         hr
 
-        h3 준비중입니다.
-        br
 
         // https://www.w3schools.com/bootstrap/bootstrap_forms.asp
 
         // ng-class='{ "btn-selected" : select.gwan == g[0]}') {{ g[1] }}
 
-        //div.table-control
-        //    button.btn.btn-primary(ng-click='click.changeSelection("weekday")',
-        //    ng-class='{ "btn-selected" : select.sel == "weekday" } ') 평일
-        //    button.btn.btn-primary(ng-click='click.changeSelection("weekend")',
-        //    ng-class='{ "btn-selected" : select.sel == "weekend" } ') 주말
-        //
-        //    button.btn.btn-primary(ng-click='click.save()') 저장
+        div.table-control
+            button.btn.btn-primary(ng-click='click.changeSelection("weekday")',
+            ng-class='{ "btn-selected" : select.sel == "weekday" } ') 평일
+            button.btn.btn-primary(ng-click='click.changeSelection("weekend")',
+            ng-class='{ "btn-selected" : select.sel == "weekend" } ') 주말
+
+            button.btn.btn-primary(ng-click='click.save()') 저장
+
+        table
+            tr
+                th -
+                th 학교
+                th 조치원역
+            tr(ng-repeat='l in shuttle[sel.week] track by $index')
+                td
+                    button.btn.btn-primary(ng-click='click.delete($index)') 삭제
+                td(ng-repeat='d in loopDest')
+                    input(ng-model='shuttle[sel.week][$index][d[0]]')
+
+        //.rows
+        //    .col-sm-6(ng-repeat='d in loopDest')
+        //        center
+        //            h4 {{ d[1] }}
+
 
         //
         //.rows
