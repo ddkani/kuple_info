@@ -15,11 +15,17 @@ block content
 
         .rows
             .col-sm-3
-                .form-group
-                    #date-picker.input-group.date
-                        input.form-control(type='text')
-                        span.input-group-addon
-                            span.glyphicon.glyphicon-calendar
+                // change datetimepicker to datepicker
+                #date-picker.input-append.date(data-date-format='yyyy-mm-dd')
+                    input#date-daily(type='text')
+                    span.add-on
+                        i.icon-th
+
+                //.form-group
+                    //#date-picker.input-group.date
+                    //    input.form-control(type='text')
+                    //    span.input-group-addon
+                    //        span.glyphicon.glyphicon-calendar
 
             .col-sm-9
                 div

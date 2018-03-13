@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const deepcopy = require('deepcopy');
 
 const models = require('./models');
 const AdminUser = models.AdminUserModel;
@@ -45,15 +46,15 @@ const HaksikDetail = models.HaksikDetailModel;
 //
 // });
 //
-// router.get('/create_user', function (req, res, next) {
-//
-//     let adminUser = new AdminUser({userid : 'admin', password : 'password'});
-//     adminUser.save(function (err) {
-//         if (err) { next(err); return }
-//
-//         res.json({result : true})
-//     })
-// });
+router.get('/create_user', function (req, res, next) {
+
+    let adminUser = new AdminUser({userid : 'admin', password : 'password'});
+    adminUser.save(function (err) {
+        if (err) { next(err); return }
+
+        res.json({result : true})
+    })
+});
 
 
 router.post('/login', function(req, res, next) {
@@ -104,56 +105,98 @@ router.post('/save', function (req, res, next) {
     if (req.session.user !== 'admin') { res.json({result : false}); return; }
 
     let type = req.body.type;
-    let date = new Date(req.body.date);
-
-    date.setHours(0,0,0,0);
 
     switch (type) {
         case 'haksik':
+
             const haksik = req.body.data;
-            haksik.date = date;
+            // haksik.date = new Date(haksik.date);
+            haksik.date = new Date(req.body.date);
+            haksik.date.setHours(0, 0, 0, 0); // year, month, date만 저장합니다.
 
-            if (haksik.hasOwnProperty('_id')) {
-                HaksikModel.findByIdAndUpdate(haksik._id, haksik, function (err, doc) {
-                    if (err) next(err);
-                    else if (!doc) res.json({result : false});
-                    else res.json({result : true});
-                })
-            }
-            else {
-                const _haksik = new HaksikModel(haksik);
-                _haksik.save(function (err) {
-                    if (err) next(err);
-                    else res.json({result : true});
-                });
-            }
+            let _date = deepcopy(haksik.date);
+            _date.setDate(_date.getDate() + 1);
 
-            // HaksikModel.findById(haksik, function (err, doc) {
-            //    if (err) res.json({result : false});
-            //    else if (!doc) { // not created
-            //         const _haksik = new HaksikModel(haksik);
-            //         _haksik.save(function (err) {
-            //             if (err) next(err);
-            //             else res.json({result : true});
-            //         });
-            //    }
-            //    else { // update it!
-            //        HaksikModel.findByIdAndUpdate(haksik._id, haksik, function (err, doc) {
-            //            if (err) next(err);
-            //            else res.json({result : true});
-            //        });
-            //    }
-            // });
-            // res.json({result : true});
-            // HaksikModel.findOne({date: date}, function (err, haksik) {
-            //     if (err) { next(err); return }
-            //     res.send(haksik)
-            // });
+            // "$gte": new Date(2012, 7, 14), "$lt": new Date(2012, 7, 15)}
+
+            HaksikModel.findOne({date : {$gte : haksik.date, $lt : _date}}, (err, _haksik) => {
+                if (err) {
+                    next(err); return }
+                if (_haksik) { // exist : update
+                    delete _haksik._id;
+                    HaksikModel.findByIdAndUpdate(_haksik._id, haksik, (err, _res) => {
+                        if (err) {
+                            next(err); return }
+                        res.json({result : true});
+                    });
+                }
+                else { // not exist : create
+                    delete haksik._id;
+                    const _haksik = new HaksikModel(haksik);
+                    _haksik.save((err) => {
+                        if (err) {
+                            next(err); return }
+                        res.json({result : true});
+                    })
+                }
+            });
             break;
 
         default:
             res.send('')
     }
+
+    // let type = req.body.type;
+    // let date = new Date(req.body.date);
+    //
+    // date.setHours(0,0,0,0);
+    //
+    // switch (type) {
+    //     case 'haksik':
+    //         const haksik = req.body.data;
+    //         haksik.date = date;
+    //
+    //         if (haksik.hasOwnProperty('_id')) {
+    //             HaksikModel.findByIdAndUpdate(haksik._id, haksik, function (err, doc) {
+    //                 if (err) next(err);
+    //                 else if (!doc) res.json({result : false});
+    //                 else res.json({result : true});
+    //             })
+    //         }
+    //         else {
+    //             const _haksik = new HaksikModel(haksik);
+    //             _haksik.save(function (err) {
+    //                 if (err) next(err);
+    //                 else res.json({result : true});
+    //             });
+    //         }
+    //
+    //         // HaksikModel.findById(haksik, function (err, doc) {
+    //         //    if (err) res.json({result : false});
+    //         //    else if (!doc) { // not created
+    //         //         const _haksik = new HaksikModel(haksik);
+    //         //         _haksik.save(function (err) {
+    //         //             if (err) next(err);
+    //         //             else res.json({result : true});
+    //         //         });
+    //         //    }
+    //         //    else { // update it!
+    //         //        HaksikModel.findByIdAndUpdate(haksik._id, haksik, function (err, doc) {
+    //         //            if (err) next(err);
+    //         //            else res.json({result : true});
+    //         //        });
+    //         //    }
+    //         // });
+    //         // res.json({result : true});
+    //         // HaksikModel.findOne({date: date}, function (err, haksik) {
+    //         //     if (err) { next(err); return }
+    //         //     res.send(haksik)
+    //         // });
+    //         break;
+    //
+    //     default:
+    //         res.send('')
+    // }
 });
 
 

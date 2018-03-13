@@ -36,6 +36,7 @@ angular.module('kuple_info')
     };
 
     $scope.select = {
+        date : '',
         gwan : ''
     };
 
@@ -179,23 +180,25 @@ angular.module('kuple_info')
     }
 
     function getDate() {
-        return datePicker.data("DateTimePicker").date()
+        var d = datePicker.datepicker('getDate');
+        console.log('getDate() : ' + d);
+        return d;
+        // var d = datePicker.data("DateTimePicker").date();
+        // console.log(d);
+        // return d;
     }
 
 
     function init() {
         // initialize datetimepicker
-        datePicker.datetimepicker({
-            format : 'YYYY. MM. DD',
-            defaultDate: moment.now(),
-            // useCurrent : false
-        }).on('dp.change', function (e) {
-            // alert(e.date)
-            console.log(e.date);
-            waitingDialog.show("Processing API...");
-            APIFactory.retriveData(callback_retriveData, type, e.date)
-        });
+        datePicker.datepicker({});
+        datePicker.datepicker("setDate", "today");
 
+        datePicker.on('changeDate', function (ev) {
+            console.log(ev.date);
+            waitingDialog.show("Processing API...");
+            APIFactory.retriveData(callback_retriveData, type, ev.date);
+        });
 
         $scope.select.gwan = 'future';
         APIFactory.retriveData(callback_retriveData, type, getDate())

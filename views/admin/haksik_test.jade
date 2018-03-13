@@ -1,0 +1,91 @@
+extends layout
+block content
+
+    .container-fluid#container(ng-controller='adminHaksikController')
+        //div
+        //    div(style='float: left')
+        div.table-top
+            h3 학식 관리
+            a(href='http://dorm.ourhome.co.kr/reqKoSJ.aspx', target='_blank')
+                span.table-top &nbsp;(식단 링크 바로가기)
+        //div.clear
+        hr
+
+        // https://www.w3schools.com/bootstrap/bootstrap_forms.asp
+
+        .rows
+            .col-sm-3
+                #date.input-append.date(data-date='2012-01-02', data-date-format='yyyy-mm-dd')
+                    input#date-daily(type='text')
+                    span.add-on
+                        i.icon-th
+
+
+            .col-sm-9
+                div
+                    //button.btn.btn-primary.btn-save(ng-click='click.save()') 저장
+                    ////button.btn.btn-danger.btn-delete(ng-click='click.delete()') 삭제
+                    //button.btn.btn-primary.btn-gwan(ng-repeat='g in loopGwan',
+                    //ng-click='click.changeGwan(g[0])',
+                    //ng-class='{ "btn-selected" : select.gwan == g[0]}') {{ g[1] }}
+
+
+        //button.btn.btn-primary.btn-save.pull-right.float-left(ng-click='click.goDorm()') 식단 바로가기
+
+        div.clear
+
+        hr.hr
+
+        //div.table-select-gwan
+        //    div
+        //        button.btn.btn-primary(ng-repeat='g in loopGwan',
+        //        ng-click='click.changeGwan(g[0])') {{ g[1] }}
+
+
+        //.rows.table-gwan
+        //    .col-sm-4.table-meal(ng-repeat='m in loopMeal')
+        //        // meal?
+        //        center
+        //            h4.meal {{ m[1] }}
+        //
+        //        button.btn.btn-primary.pull-right(ng-if='!haksik[select.gwan][m[0]].length',
+        //        ng-click='obj.addCourse(m[0])') 코너 추가
+        //
+        //        // show corner (bf -> corners)
+        //        div.table-corner(ng-repeat='c in haksik[select.gwan][m[0]] track by $index')
+        //            .form-group.row
+        //                //label.col-2.col-form-label(for='example-text-input') 코너 이름
+        //                label.col-form-label(for='text-input-name') 코너이름
+        //                .col-10
+        //                    input#text-input-name.form-control(ng-model='c.name'
+        //                    type='text', placeholder='예)한식메뉴')
+        //
+        //                label.col-form-label(for='text-input-name') 주식메뉴
+        //                .col-10
+        //                    input#text-input-dish.form-control(ng-model='c.dish'
+        //                    type='text', placeholder='예)우삼겹된장찌개')
+        //
+        //                label.col-form-label(for='text-input-side') 부메뉴(반찬)
+        //                .col-10
+        //                    input#text-input-side.form-control(ng-model='c.side'
+        //                    type='text', placeholder='예)쌀밥, 파래자반볶음, 된장국, ...')
+        //
+        //            div.pull-right.table-option
+        //                button.btn.btn-primary.btn-delete-corner(ng-click='obj.addCourse(m[0])',
+        //                ng-if='$last') 추가
+        //                button.btn.btn-primary.btn-delete-corner(ng-click='click.deleteCourse(m[0], $index)') 삭제
+        //            br
+        //            hr
+        //
+
+        //- breakfirst launch dinner
+        //div(ng-repeat='p in loopMeal')
+
+
+
+
+
+    script(src='/js/admin/haksik_test.js')
+    //script(src='/asset/jquery-datetime-picker-bygiro/dist/jquery.datetimepicker.ByGiro.js')
+    //link(rel='stylesheet', href='/asset/jquery-datetime-picker-bygiro/dist/jquery.datetimepicker.ByGiro.css')
+    link(rel='stylesheet', href='/css/admin_haksik.css')
