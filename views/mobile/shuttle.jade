@@ -29,14 +29,40 @@ block content
         .container-fluid.main-time(ng-if='def')
             div
                 h4.message 현재 시간
-                h4 &nbsp{{ }}
+                h4 &nbsp{{ formatTime(time); }}
+
             div
-                h4 다음 배차시간
-                h4 {{ get.nearTime() }}
-                h4.message {{ get.location() }}
-                h4 에서 다음 배차까지 {{ get.gap() }} 분 남았습니다!
+                h4.message 다음 배차시간
+                h4 &nbsp&nbsp{{ formatTime(get.nearTime()) }}
+                br
+                br
+                center
+                    h4.message {{ get.location() }}
+                    h4 에서 다음 배차까지
+                    h4.message &nbsp{{ get.gap() }}&nbsp
+                    h4 분 남았습니다!
 
+        hr
 
+        div.table-container
+            table.table
+                colgroup
+                    col(width="10px")
+                    col(width="40%")
+                    col(width="40%")
+                thread
+                    th -
+                    th 학교
+                    th 조치원역
+                tbody
+                    tr(ng-repeat="l in shuttle[$scope.get.week() !== 'Sunday' ? 'weekday' : 'weekend'] track by $index",
+                    ng-class="{'timeSelected' : $index == select.index}")
+                        td(id="time-{{$index}}")
+                            span {{ $index + 1 }}
+                        td
+                            h4 {{ formatTime(shuttle[$scope.get.week() !== 'Sunday' ? 'weekday' : 'weekend'][$index]['school']) }}
+                        td
+                            h4 {{ formatTime(shuttle[$scope.get.week() !== 'Sunday' ? 'weekday' : 'weekend'][$index]['jochiwon']) }}
 
         //.container-fluid
         //    center

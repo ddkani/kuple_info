@@ -4,7 +4,7 @@ angular.module('kuple_info')
 // http://eonasdan.github.io/bootstrap-datetimepicker/Options/#format
 
 
-.controller('mobileShuttleController', function (APIFactory, $scope) {
+.controller('mobileShuttleController', function (APIFactory, $scope, $anchorScroll, $location) {
 
     /* TODO
     select (학교 or 조치원)
@@ -15,6 +15,8 @@ angular.module('kuple_info')
 
     var type = 'shuttle';
 
+    // $scope.time = new Date();
+    $scope.time = new Date("Wed Mar 14 2018 19:55:13 GMT+0900 (KST)");
     $scope.shuttle = {};
     $scope.def = false;
 
@@ -24,18 +26,67 @@ angular.module('kuple_info')
         }
     };
 
+
+    $scope.formatTime = function (t) {
+        try {
+            return t.getHours() + "시 " + t.getMinutes() + "분"
+        } catch (ex) {
+            t = new Date(t);
+            if ((t.getHours() + t.getMinutes()) === 0) return "";
+            return t.getHours() + "시 " + t.getMinutes() + "분"
+        }
+    };
+
+    // test : Wed Mar 14 2018 22:55:13 GMT+0900 (KST)
+    // test : Wed Mar 14 2018 19:55:13 GMT+0900 (KST)
+
     $scope.get = {
         // 가장 가까운 배차시간
         nearTime : function () {
             /*
             shuttle.weekend[] => jochiwon or school
-
             */
+
+            // 토요일은 고려하지 않아도 됩니다.
+            console.log('nearTime');
+
+            var week = $scope.get.week() !== 'Sunday' ? 'weekday' : 'weekend';
+            var loc = $scope.select.location;
+
+            // var cur = new Date();
+            // var cur = new Date("Wed Mar 14 2018 19:55:13 GMT+0900 (KST)");
+            var cur = $scope.time;
+            var chk = (cur.getHours() * 60) + cur.getMinutes();
+
+
+            for (var i in $scope.shuttle[week]) {
+                var t = new Date($scope.shuttle[week][i][loc]);
+
+                // 12:00 AM!
+                if ((t.getHours() + t.getMinutes()) === 0) continue;
+
+                var _chk = (t.getHours() * 60) + t.getMinutes();
+                if ((_chk - chk) < 0) continue;
+
+                console.log(t);
+
+                $scope.select.index = Number(i);
+
+                $location.hash('time-' + i);
+                $anchorScroll();
+
+                return t;
+            }
+
         },
 
         // 다음 배차까지의 간격
         gap : function () {
-            // get nearTime => calc gap!
+            var next = $scope.get.nearTime();
+            var n = (next.getHours() * 60) + next.getMinutes();
+            var c = ($scope.time.getHours() * 60) + $scope.time.getMinutes();
+
+            return n - c;
         },
 
         location: function () {
@@ -56,12 +107,12 @@ angular.module('kuple_info')
             weekday[6] = "Saturday";
 
             return weekday[new Date().getDay()]
-        }
+        },
     };
 
-    $scope.date = formatDate(new Date());
     $scope.select = {
-        location : null
+        location : null,
+        index : 0
     };
 
 
@@ -72,7 +123,7 @@ angular.module('kuple_info')
         else {
             $scope.def = true;
             console.log("retriveData OK: received.");
-            $scope.haksik = angular.copy(data);
+            $scope.shuttle = angular.copy(data);
         }
     }
 

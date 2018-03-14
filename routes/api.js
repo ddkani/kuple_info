@@ -47,15 +47,15 @@ const ShuttleModel = models.ShuttleModel;
 //
 // });
 //
-router.get('/create_user', function (req, res, next) {
-
-    let adminUser = new AdminUser({userid : 'admin', password : 'password'});
-    adminUser.save(function (err) {
-        if (err) { next(err); return }
-
-        res.json({result : true})
-    })
-});
+// router.get('/create_user', function (req, res, next) {
+//
+//     let adminUser = new AdminUser({userid : 'admin', password : 'password'});
+//     adminUser.save(function (err) {
+//         if (err) { next(err); return }
+//
+//         res.json({result : true})
+//     })
+// });
 
 
 router.post('/login', function(req, res, next) {
