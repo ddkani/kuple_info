@@ -26,25 +26,31 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 
 // var client = redis.createClient({host : process.env.redis_server, port : Number(process.env.redis_port)});
-const redisClient = redis.createClient({host : '127.0.0.1', port : 6379, db : 2});
-app.use(session(
-    {
-        key: 'sid',
-        // secret: process.env.redis_secret,
-        secret: "123412341234",
-        store: new redisStore({
-            host: '127.0.0.1',
-            // host: process.env.redis_server,
-            port: 6379,
-            // port: Number(process.env.redis_port),
-            client: redisClient,
-            prefix : "session:",
-            db : 2
-        }),
-        saveUninitialized: false, // don't create session until something stored,
-        resave: true // don't save session if unmodified
-    }
-));
+// const redisClient = redis.createClient({host : '127.0.0.1', port : 6379, db : 2});
+// app.use(session(
+//     {
+//         key: 'sid',
+//         // secret: process.env.redis_secret,
+//         secret: "123412341234",
+//         store: new redisStore({
+//             host: '127.0.0.1',
+//             // host: process.env.redis_server,
+//             port: 6379,
+//             // port: Number(process.env.redis_port),
+//             client: redisClient,
+//             prefix : "session:",
+//             db : 2
+//         }),
+//         saveUninitialized: false, // don't create session until something stored,
+//         resave: true // don't save session if unmodified
+//     }
+// ));
+
+app.use(session({
+    secret: '@#@$MYSIGNadskfj#@$#$',
+    resave: false,
+    saveUninitialized: true
+}));
 
 app.use('/css', expressLess(path.join(__dirname, 'public/stylesheets')));
 app.use('/css-import', express.static(path.join(__dirname, 'public/stylesheets-asset')));
