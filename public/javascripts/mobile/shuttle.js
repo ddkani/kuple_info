@@ -15,8 +15,8 @@ angular.module('kuple_info')
 
     var type = 'shuttle';
 
-    // $scope.time = new Date();
-    $scope.time = new Date("Wed Mar 14 2018 19:55:13 GMT+0900 (KST)");
+    $scope.time = new Date();
+    // $scope.time = new Date("Wed Mar 14 2018 19:55:13 GMT+0900 (KST)");
     $scope.shuttle = {};
     $scope.def = false;
 
