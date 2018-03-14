@@ -30,19 +30,22 @@ block content
 
             .container-fluid.main-time(ng-if='def')
                 div
-                    h4.message 현재 시간
-                    h4 &nbsp{{ formatTime(time); }}
+                    center
+                        h4.message 현재 시간
+                        br
+                        h4 {{ formatTime(time); }}
 
                 div
-                    h4.message 다음 배차시간
-                    h4 &nbsp&nbsp{{ formatTime(get.nearTime()) }}
-                    br
+                    center
+                        h4.message 다음 배차시간
+                        br
+                        h4.sizeup {{ formatTime(get.nearTime()) }}
                     br
                     center
                         h4.message {{ get.location() }}
                         h4 에서 다음 배차까지
-                        h4.message &nbsp{{ get.gap() }}&nbsp
-                        h4 분 남았습니다!
+                        h4.message.sizeup &nbsp{{ get.gap() }}&nbsp
+                        h4.sizeup 분 남았습니다!
 
             hr
 
