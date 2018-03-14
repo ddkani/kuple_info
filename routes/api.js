@@ -5,9 +5,10 @@ const deepcopy = require('deepcopy');
 const models = require('./models');
 const AdminUser = models.AdminUserModel;
 const HaksikModel = models.HaksikModel;
-const HaksikDetail = models.HaksikDetailModel;
+// const HaksikDetail = models.HaksikDetailModel;
+const ShuttleModel = models.ShuttleModel;
 
-// https://stackoverflow.com/questions/33383207/mongoose-casterror-cast-to-array-failed-for-value-when-trying-to-save-a-model
+// https://stackoverlow.com/questions/33383207/mongoose-casterror-cast-to-array-failed-for-value-when-trying-to-save-a-model
 
 // router.get('/create_haksik', function (req, res, next) {
 //
@@ -95,6 +96,12 @@ router.post('/retrive', function (req, res, next) {
             break;
 
         case 'shuttle':
+            ShuttleModel.findOne({}, function (err, shuttle) {
+                if (err) { next(err); return }
+                res.send(shuttle);
+                // if (!Shuttle) res.json({result : false});
+                // else res.json({result : true, data : })
+            });
             break;
 
         default:
@@ -111,7 +118,6 @@ router.post('/save', function (req, res, next) {
 
     switch (type) {
         case 'haksik':
-
             const haksik = req.body.data;
             // haksik.date = new Date(haksik.date);
             haksik.date = new Date(req.body.date);
@@ -143,6 +149,27 @@ router.post('/save', function (req, res, next) {
                     })
                 }
             });
+            break;
+
+        case 'shuttle':
+            const shuttle = req.body.data;
+
+            if (shuttle.hasOwnProperty('_id')) {
+                ShuttleModel.findByIdAndUpdate(shuttle._id, shuttle, function (err, doc) {
+                    if (err) next(err);
+                    else if (!doc) res.json({result : false});
+                    else res.json({result : true});
+                })
+            }
+
+            else {
+                const _shuttle = new ShuttleModel(shuttle);
+                _shuttle.save((err) => {
+                    if (err) {
+                        next(err); return }
+                    res.json({result : true});
+                });
+            }
             break;
 
         default:

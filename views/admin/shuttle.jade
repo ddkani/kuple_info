@@ -22,18 +22,76 @@ block content
             button.btn.btn-primary(ng-click='click.changeSelection("weekend")',
             ng-class='{ "btn-selected" : select.sel == "weekend" } ') 주말
 
+            button.btn.btn-primary(ng-click='click.add()') 추가
             button.btn.btn-primary(ng-click='click.save()') 저장
 
-        table
-            tr
+
+        table.table
+            colgroup
+                col(width="50px")
+                col(width="40%")
+                col(width="40%")
+                col(width="50px")
+            thread
+                tr
+                    th.t-index -
+                    th.t-school 학교
+                    th.t-jochiwon 조치원역
+                    th.t-btn .
+            tbody
+                tr(ng-repeat='l in shuttle[sel.week] track by $index')
+                    td.t-index
+                        span {{ $index + 1}}
+                    td.t-school
+                        div(uib-timepicker='', ng-model='shuttle[sel.week][$index]["school"]')
+                    td.t-jochiwon
+                        div(uib-timepicker='', ng-model='shuttle[sel.week][$index]["jochiwon"]')
+                    td.t-btn
+                        button.btn.btn-primary.btn-delete(ng-click='click.delete($index)') 삭제
+
+
+
+
+        //table
+            tr.tr-first
                 th -
                 th 학교
                 th 조치원역
             tr(ng-repeat='l in shuttle[sel.week] track by $index')
                 td
-                    button.btn.btn-primary(ng-click='click.delete($index)') 삭제
-                td(ng-repeat='d in loopDest')
-                    input(ng-model='shuttle[sel.week][$index][d[0]]')
+                    button.btn.btn-primary.btn-delete(ng-click='click.delete($index)') 삭제
+                td
+                    input(ng-model='shuttle[sel.week][$index]["school"]')
+                td
+                    input(ng-model='shuttle[sel.week][$index]["jochiwon"]')
+                //td(ng-repeat='d in loopDest')
+                //    input(ng-model='shuttle[sel.week][$index][d[0]]')
+
+
+
+
+        //.row
+        //    .col-xs-2
+        //        div.col(ng-repeat='l in shuttle[sel.week] track by $index')
+        //            button.btn.btn-primary.btn-delete(ng-click='click.delete($index)') 삭제
+        //
+        //    .col-xs-5
+        //        h4 학교
+        //        div.col(ng-repeat='l in shuttle[sel.week]["school"] track by $index')
+        //            //div(uib-timepicker='', ng-model='mytime', ng-change='changed()', hour-step='hstep', minute-step='mstep', show-meridian='ismeridian')
+        //            //div(uib-timepicker='', ng-model='mytime', ng-change='changed()', show-meridian='true')
+        //            div(uib-timepicker='', ng-model='shuttle[sel.week]["school"][$index]')
+        //            //.input-group.bootstrap-timepicker.timepicker
+        //            //    input#timepicker1.form-control.input-small(type='text')
+        //            //
+        //            //    span.input-group-addon
+        //            //        i.glyphicon.glyphicon-time
+        //
+        //
+        //    .col-xs-5
+        //        h4 조치원역
+        //        div.col(ng-repeat='l in shuttle[sel.week]["jochiwon"] track by $index')
+        //            div(uib-timepicker='', ng-model='shuttle[sel.week]["jochiwon"][$index]')
 
         //.rows
         //    .col-sm-6(ng-repeat='d in loopDest')
