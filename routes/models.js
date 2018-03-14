@@ -52,16 +52,19 @@ const HaksikModel = db.model('Haksik', haksikSchema);
 
 
 // 년, 월, 일이 어떻게 들어오든 상관없습니다. 단지 클라이언트에서 시간(시간, 분, 일) 만 핸들하면 됩니다.
-const shuttleEachSchema = mongoose.Schema({
-    jochiwon : [Date],
-    school : [Date]
-}, { collection : 'ShuttleEachSchema'});
-const ShuttleEachModel = db.model('ShuttleEach', shuttleEachSchema);
+// const shuttleEachSchema = mongoose.Schema({
+//
+//     // jochiwon : [Date],
+//     // school : [Date]
+// }, { collection : 'ShuttleEachSchema'});
+// const ShuttleEachModel = db.model('ShuttleEach', shuttleEachSchema);
 
 
 const shuttleSchema = mongoose.Schema({
-    weekday : shuttleEachSchema,
-    weekend : shuttleEachSchema
+    weekday : [],
+    weekend : []
+    // weekday : shuttleEachSchema,
+    // weekend : shuttleEachSchema
 }, { collection : 'ShuttleSchema'});
 const ShuttleModel = db.model('Shuttle', shuttleSchema);
 
@@ -72,4 +75,4 @@ exports.HaksikDetailModel = HaksikDetailModel;
 exports.HaksikGwanModel = HaksikGwanModel;
 
 exports.ShuttleModel = ShuttleModel;
-exports.ShuttleEachModel = ShuttleEachModel;
+// exports.ShuttleEachModel = ShuttleEachModel;

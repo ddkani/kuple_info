@@ -18,11 +18,13 @@ block content
 
         div.table-control
             button.btn.btn-primary(ng-click='click.changeSelection("weekday")',
-            ng-class='{ "btn-selected" : select.sel == "weekday" } ') 평일
+            ng-class='{ "btn-selected" : sel.week == "weekday" } ') 평일
             button.btn.btn-primary(ng-click='click.changeSelection("weekend")',
-            ng-class='{ "btn-selected" : select.sel == "weekend" } ') 주말
+            ng-class='{ "btn-selected" : sel.week == "weekend" } ') 주말 (일요일)
+            a &nbsp;&nbsp;
 
             button.btn.btn-primary(ng-click='click.add()') 추가
+            a &nbsp;&nbsp;
             button.btn.btn-primary(ng-click='click.save()') 저장
 
 

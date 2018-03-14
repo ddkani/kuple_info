@@ -81,6 +81,10 @@ angular.module('kuple_info')
 
     $scope.click.changeSelection = function (sel) { $scope.sel.week = sel; };
     $scope.click.save = function () {
+        if (confirm("이대로 저장할까요?")) {
+            waitingDialog.show("Processing API...");
+            APIFactory.saveData($scope.callback.saveData, null, type, $scope.shuttle);
+        }
 
     };
     $scope.click.delete = function (index) {
@@ -134,14 +138,27 @@ angular.module('kuple_info')
     };
     $scope.callback.saveData = function (err, data) {
         waitingDialog.hide();
-        if (err) {
-
-        }
-        else if (data) {
-
+        if (err || !data) {
+            $.notify({
+                message: "저장 실패. 페이지를 새로고침 해주세요."
+            }, {
+                // settings
+                type: 'danger',
+                allow_dismiss: false,
+                delay: 2000,
+                // width: "50%"
+            });
         }
         else {
-
+            $.notify({
+                message: "성공적으로 저장되었습니다."
+            }, {
+                // settings
+                type: 'success',
+                allow_dismiss: false,
+                delay: 2000,
+                // width: "50%"
+            });
         }
     };
 
@@ -161,26 +178,7 @@ angular.module('kuple_info')
         2. exist :: prepare it! (ng-model)
         3. not exist -> obj.init()
         4. save!
-
-
         */
-
-        // initialize datetimepicker
-        // datePicker.datetimepicker({
-        //     format : 'YYYY. MM. DD',
-        //     defaultDate: moment.now(),
-        //     // useCurrent : false
-        // }).on('dp.change', function (e) {
-        //     // alert(e.date)
-        //     console.log(e.date);
-        //     waitingDialog.show("Processing API...");
-        //     APIFactory.retriveData(callback_retriveData, e.date, 'haksik')
-        // });
-        //
-        //
-        // $scope.select.gwan = 'future';
-        // APIFactory.retriveData(callback_retriveData, getDate(), 'haksik')
-        // $scope.obj.init()
     }
     init();
 
