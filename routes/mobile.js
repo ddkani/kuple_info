@@ -7,4 +7,10 @@ router.get('/haksik', function(req, res, next) {
 });
 
 
+router.get('/shuttle', function(req, res, next) {
+    res.render('mobile/shuttle')
+});
+
+
+
 module.exports = router;

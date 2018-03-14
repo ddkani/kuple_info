@@ -1,0 +1,75 @@
+extends layout
+
+block content
+
+    //link(rel='stylesheet', href='/css-import/haksik.css')
+    link(rel='stylesheet', href='/css/shuttle.css')
+
+    div(ng-controller='mobileShuttleController')
+
+        .container-fluid.tabview
+            ul.list-inline.tabsize
+                li(ng-class="{'tabSelected': select.location == 'school'}", ng-click="click.changeLocation('school')")
+                    center
+                        a 학교
+                li(ng-class="{'tabSelected': select.location == 'jochiwon'}", ng-click="click.changeLocation('jochiwon')")
+                    center
+                        a 조치원역
+
+        //- deprecated!
+        .container-fluid(ng-if='!def').select-first
+            center
+                h4 이런! 서버에 셔틀버스 정보가 없습니다.
+
+        .container-fluid(ng-if='get.week == "Saturday"').select-first
+            center
+                h4 토요일에는 셔틀버스가 운영되지 않습니다.
+
+
+        .container-fluid.main-time(ng-if='def')
+            div
+                h4.message 현재 시간
+                h4 &nbsp{{ }}
+            div
+                h4 다음 배차시간
+                h4 {{ get.nearTime() }}
+                h4.message {{ get.location() }}
+                h4 에서 다음 배차까지 {{ get.gap() }} 분 남았습니다!
+
+
+
+        //.container-fluid
+        //    center
+        //        div.container-top
+        //            h4 {{ date }}
+        //
+        //            div
+        //                button.btn.btn-primary(ng-class="{'btnSelected': select.meal == 'breakfirst'}",
+        //                ng-click='click.meal("breakfirst")') 아침
+        //
+        //                button.btn.btn-primary(ng-class="{'btnSelected': select.meal == 'launch'}",
+        //                ng-click='click.meal("launch")') 점심
+        //
+        //                button.btn.btn-primary(ng-class="{'btnSelected': select.meal == 'dinner'}",
+        //                ng-click='click.meal("dinner")') 저녁
+        //
+        //
+        //
+        //
+        //    .container.haksik-course-list
+        //
+        //        div(ng-if='haksik[select.tab][select.meal].length === 0 || haksik === null')
+        //            center
+        //                br
+        //                br
+        //                h4 메뉴가 존재하지 않습니다.
+        //
+        //
+        //        .haksik-course(ng-repeat="data in haksik[select.tab][select.meal]")
+        //            center
+        //                h3.course {{ data.name }}
+        //                h4.dish {{ data.dish }}
+        //                h4 {{ data.side }}
+
+    //script(src='/js/mobile/haksik.js')
+    script(src='/js/mobile/shuttle.js')

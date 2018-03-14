@@ -1,0 +1,105 @@
+@color_1: white;
+@color_2: #cb7920;
+@background_color_1: #7a0600;
+@background_color_2: #520400;
+@background_color_3: #1a3f5e;
+
+/* background-color => applyed to magin@*/
+/* custom */
+/* selected item theme! */
+/* radio button form */
+.navbar.navbar-inverse {
+  margin-bottom: 0 !important;
+}
+.container-fluid.tabview {
+  padding-left: 0;
+  padding-right: 0;
+  margin-bottom: 5px;
+  width: 100%;
+}
+ul.tabsize {
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+}
+
+.tabsize {
+  a {
+    font-weight: 700;
+    font-size: 1.1em;
+    color: @color_1;
+  }
+  li {
+    background-color: @background_color_1;
+    width: calc(50%);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #7a0600;
+  }
+}
+.tabSelected {
+  background-color: @background_color_2 !important;
+  border-bottom: 3px solid #ffe60f !important;
+}
+.container.radio {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+label.radio-inline {
+  font-size: 17px !important;
+}
+.container.haksik-course-list {
+  margin-bottom: 10px;
+}
+.haksik-course {
+  padding: 0 0 0 0;
+  margin-bottom: 50px;
+  .course {
+    font-weight: 700;
+    color: @color_2;
+  }
+  .dish {
+    font-weight: 700;
+    text-decoration: underline;
+  }
+}
+.container-top {
+  border-bottom: 1px solid black;
+  h4 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: 900 !important;
+    font-size: 1.3em !important;
+  }
+  div {
+    display: inline-block;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    button {
+      padding: 5px 10px 5px 10px;
+      margin-right: 3px;
+      border-radius: 0;
+    }
+  }
+}
+.btnSelected {
+  background-color: @background_color_3 !important;
+}
+
+
+
+.select-first {
+  padding-top: 30px;
+}
+
+.main-time {
+  div {
+    margin-top: 10px;
+
+    //h4 { display: inline-block; }
+    h4 { display: inline; }
+    .message { font-weight: bold; }
+  }
+}
