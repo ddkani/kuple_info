@@ -62,6 +62,7 @@ const HaksikModel = db.model('Haksik', haksikSchema);
 
 const shuttleSchema = mongoose.Schema({
     weekday : [],
+    friday : [], // 2018. 03. 16 added. 금요일에는 운휴하는 차량이 있으므로, 별도록 분류합니다.
     weekend : []
     // weekday : shuttleEachSchema,
     // weekend : shuttleEachSchema

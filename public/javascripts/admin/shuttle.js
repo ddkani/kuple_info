@@ -16,7 +16,7 @@ angular.module('kuple_info')
     $scope.click = {};
     $scope.callback = {};
 
-    $scope.loopWeek = [['weekday', '평일'], ['weekend', '주말']];
+    $scope.loopWeek = [['weekday', '평일'], ['friday', '금요일'], ['weekend', '주말']];
     $scope.loopDest = [['school', '학교'], ['jochiwon', '조치원역']];
 
     $scope.ObjTable = {

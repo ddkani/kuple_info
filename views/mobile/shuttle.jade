@@ -21,12 +21,14 @@ block content
             center
                 h4 이런! 서버에 셔틀버스 정보가 없습니다.
 
-        .container-fluid(ng-if='get.week == "Saturday"').select-first
+
+
+        .container-fluid(ng-if='get.week() == "Saturday"').select-first
             center
                 h4 토요일에는 셔틀버스가 운영되지 않습니다.
 
 
-        div(ng-if='get.week != "Saturday"')
+        div(ng-if='get.week() != "Saturday"')
 
             .container-fluid.main-time(ng-if='def')
                 div
@@ -49,6 +51,7 @@ block content
 
             hr
 
+            //div.table-container
             div.table-container
                 table.table
                     colgroup
@@ -60,14 +63,14 @@ block content
                         th 학교
                         th 조치원역
                     tbody
-                        tr(ng-repeat="l in shuttle[$scope.get.week() !== 'Sunday' ? 'weekday' : 'weekend'] track by $index",
+                        tr(ng-repeat="l in shuttle[get.week()] track by $index",
                         ng-class="{'timeSelected' : $index == select.index}")
                             td(id="time-{{$index}}")
                                 span {{ $index + 1 }}
                             td
-                                h4 {{ formatTime(shuttle[$scope.get.week() !== 'Sunday' ? 'weekday' : 'weekend'][$index]['school']) }}
+                                h4 {{ formatTime(shuttle[get.week()][$index]['school']) }}
                             td
-                                h4 {{ formatTime(shuttle[$scope.get.week() !== 'Sunday' ? 'weekday' : 'weekend'][$index]['jochiwon']) }}
+                                h4 {{ formatTime(shuttle[get.week()][$index]['jochiwon']) }}
 
         //.container-fluid
         //    center

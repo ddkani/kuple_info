@@ -19,6 +19,8 @@ block content
         div.table-control
             button.btn.btn-primary(ng-click='click.changeSelection("weekday")',
             ng-class='{ "btn-selected" : sel.week == "weekday" } ') 평일
+            button.btn.btn-primary(ng-click='click.changeSelection("friday")',
+            ng-class='{ "btn-selected" : sel.week == "friday" } ') 금요일
             button.btn.btn-primary(ng-click='click.changeSelection("weekend")',
             ng-class='{ "btn-selected" : sel.week == "weekend" } ') 주말 (일요일)
             a &nbsp;&nbsp;
