@@ -106,9 +106,16 @@ label.radio-inline {
 
 
 .btn-primary {
-    background-color: #7a0600;
+    background-color: #7a0600 !important;
     border: none;
 }
+
+
+/*.btn-primary:hover {*/
+    /*background-color: #7a0600;*/
+    /*border: none;*/
+/*}*/
+
 
 .btnSelected {
     background-color: #3f0300 !important;
