@@ -151,6 +151,8 @@ angular.module('kuple_info')
 
         waitingDialog.show('불러오는중...');
         APIFactory.retriveData(callback_retriveData, type, new Date());
+
+        setTimeout(function () { location.reload(); }, 60000);
     }
     init();
 
