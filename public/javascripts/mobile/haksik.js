@@ -37,10 +37,10 @@ angular.module('kuple_info')
         저녁 15~21
         */
 
-        if ((h >= 21) && (h < 10)) return "breakfirst";
+        // if ((h >= 21) && (h < 10)) return "breakfirst";
         if ((h >= 10) && (h < 15)) return "launch";
-        if ((h >= 15) && (h < 21)) return "dinner";
-
+        else if ((h >= 15) && (h < 21)) return "dinner";
+        else return "breakfirst";
     }
 
 
