@@ -27,10 +27,13 @@ block content
             center
                 h4 토요일에는 셔틀버스가 운영되지 않습니다.
 
+        //.container-fluid(ng-if='(get.week() != "Saturday") && get.gap() == null').select-first
+        //    center
+        //        h4 오늘의 배차가 마감되었습니다.
 
-        div(ng-if='get.week() != "Saturday"')
+        div(ng-if='get.week() != "Saturday" && get.gap() != null')
 
-            .container-fluid.main-time(ng-if='def')
+            .container-fluid.main-time(ng-if='def && get.gap() != null')
                 div
                     center
                         h4.message 현재 시간
@@ -48,6 +51,11 @@ block content
                         h4 에서 다음 배차까지
                         h4.message.sizeup &nbsp{{ get.gap() }}&nbsp
                         h4.sizeup 분 남았습니다!
+
+            .container-fluid.main-time(ng-if='def && get.gap() == null')
+                div 
+                    center
+                        h4 오늘의 배차가 마감되었습니다.
 
             hr
 

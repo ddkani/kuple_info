@@ -38,6 +38,14 @@ html
         script(src='/js-asset/waitingDialog.js')
         script(src='/asset/remarkable-bootstrap-notify/dist/bootstrap-notify.min.js')
 
+    script(async='', src='https://www.googletagmanager.com/gtag/js?id=UA-86655225-5')
+    script.
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-86655225-5');
+
+
 
     body(ng-app='kuple_info')
 
