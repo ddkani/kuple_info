@@ -84,7 +84,7 @@ angular.module('kuple_info')
         // 다음 배차까지의 간격
         gap : function () {
             var next = $scope.get.nearTime();
-            if (next === null) return null;
+            if (next === undefined) return null;
 	    var n = (next.getHours() * 60) + next.getMinutes();
             var c = ($scope.time.getHours() * 60) + $scope.time.getMinutes();
 

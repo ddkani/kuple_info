@@ -31,9 +31,9 @@ block content
         //    center
         //        h4 오늘의 배차가 마감되었습니다.
 
-        div(ng-if='get.week() != "Saturday" && get.gap() != null')
+        div(ng-if='get.week() != "Saturday"')
 
-            .container-fluid.main-time(ng-if='def && get.gap() != null')
+            .container-fluid.main-time(ng-if='def && (get.gap() != null)')
                 div
                     center
                         h4.message 현재 시간
@@ -52,12 +52,12 @@ block content
                         h4.message.sizeup &nbsp{{ get.gap() }}&nbsp
                         h4.sizeup 분 남았습니다!
 
-            .container-fluid.main-time(ng-if='def && get.gap() == null')
+            .container-fluid.main-time(ng-if='def && (get.gap() == null)')
                 div 
                     center
                         h4 오늘의 배차가 마감되었습니다.
 
-            hr
+            hr 
 
             //div.table-container
             div.table-container
